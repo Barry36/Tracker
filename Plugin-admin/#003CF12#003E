@@ -1,0 +1,118 @@
+$('document').ready(function()
+{
+  var trigger_num = 2;
+  var condition_num = 2;
+  $('.table-add').on('click',function () {
+    // Find the row that is being COPIED
+    var trigger_row = $(this).parents('#outer-table').find('tr.table-outer').find('input:text.addId');
+    console.log(trigger_row);
+    console.log('trigger_'+trigger_num);
+    
+    // Clone a new row and append to the table
+    var $TABLE = $('#table');
+    var $clone = $TABLE.find('tr.table-outer').clone(true).removeClass('hide table-outer');
+    // assign id to the newly created trigger row 
+    // Append to the trigger table
+    $TABLE.find('#outer-table').append($clone);
+    // Add id for the Trigger Id field
+    $clone.find('td.trig_id').attr('id','trigger_id_'+trigger_num);
+    $clone.find('td.trig_id').text(trigger_num);
+    // Add id and name for the Trigger Name field
+    $clone.find('input:text.addId').attr('id','trigger_name_'+trigger_num);
+    $clone.find('input:text.addId').attr('name','Trigger_Name_'+trigger_num);
+
+
+    // Add id and name for the Message Type drop down list
+    $clone.find('select.msg_type').attr('id','trigger_type_'+ trigger_num);
+    $clone.find('select.msg_type').attr('name','Trigger_Type_'+ trigger_num);
+
+    // Add id and name for the Message Content drop down list
+    $clone.find('select.msg_content').attr('id','message_content_'+ trigger_num);
+    $clone.find('select.msg_content').attr('name','Message_Content_'+ trigger_num);
+
+    // Add id for condition table
+    $clone.find('div.container-cdt-table').attr('id','condition-table_'+ trigger_num);
+    $clone.find('table.table-conditions').attr('id','inner-table_'+ trigger_num);
+
+
+    trigger_num++;
+  });
+
+ $('.table-remove').click(function () {
+  if (confirm("Are you sure to delete this trigger?")) {
+        $(this).parents('tr').detach();
+    }
+    return false;
+    
+    //trigger_num--;
+  });
+
+
+  // This section is for adding and removing conditions
+  $('.condition-add').on('click',function(){
+   console.log($(this));
+   console.log($(this).parents('td'));
+   // var currentTriggerId = $(this).parents('td').parent().find('td.trig_id').html();
+   // console.log('#inner-table_'+currentTriggerId);
+    //console.log($(this).parents('#inner-table_1'));
+    var $TABLE = $('#table');
+    var $clone = $TABLE.find('tr.table-inner').clone(true).removeClass('hide table-inner');
+    $(this).parents('#inner-table_'+currentTriggerId).append($clone);
+    // Add id and name for condition table ----- parameter drop down list
+    $clone.find('select.para').attr('id','parameter_'+condition_num);
+    $clone.find('select.para').attr('name','Parameter_'+condition_num);
+
+    // Add id and name for condition table ----- operator drop down list
+    $clone.find('select.optor').attr('id','operator_'+condition_num);
+    $clone.find('select.optor').attr('name','Operator_'+condition_num);
+
+
+    // Add id and name for condition table ----- condition value input text field
+    $clone.find('input:text.optor-value').attr('id','condition_value_'+condition_num);
+    $clone.find('input:text.optor-value').attr('name','Condition_Value_'+condition_num);
+
+    condition_num++;
+  });
+
+   $('.condition-minus').click(function () {
+    console.log($(this).parent().parent());
+    $(this).parent().parent().detach();
+  });
+});
+
+// Change content according to user selection of Message Type
+function getIdOfS1AndS2(id){
+  var s1 = id;
+  var s2 = $('#'+id).parent().parent().find('select.msg_content').attr("id");
+  // console.log($('#'+id).parent().parent().find('select.msg_content').attr("id"));
+  // console.log(s2);
+  populate(s1,s2)
+}
+function populate(s1,s2)
+{
+  var s1 = document.getElementById(s1);
+  var s2 = document.getElementById(s2);
+  s2.innerHTML = "Select One";
+  if(s1.value == "select"){
+    var optionArray = ["|","select|Please Select Message Type First"];
+  } else if(s1.value == "bar"){
+    var optionArray = ["|","ad_bar|AD Bar"];
+  } else if(s1.value == "email"){
+    var optionArray = ["|","select|Select One","quiz_remder|Quiz Function Reminder","expire_remder|Expire Reminder"];
+  }
+  // this loop run once for each element in optionArray, e.g var optionArray = ["|","select|Select One","quiz_remder|Quiz Function Reminder","expire_remder|Expire Reminder"]; would run 4 times
+  for(var option in optionArray){
+    
+    var pair = optionArray[option].split("|");// split string into array
+    
+    var newOption = document.createElement("option");//create tag <option>
+    newOption.value = pair[0];
+    newOption.innerHTML = pair[1];
+
+    s2.options.add(newOption);
+  }
+}
+
+
+
+

@@ -1,0 +1,12 @@
+<?php 
+
+// Preview Your Template Here
+
+// $DB = mysqli_connect('localhost','root','wjq123','beanstalk_moodle');
+$previewContent = (isset($_POST['previewContent']) ? $_POST['previewContent'] : null);
+echo "$previewContent <br>";
+if ($previewContent) {
+	echo "$previewContent";
+}else{
+	echo "No Content";
+}

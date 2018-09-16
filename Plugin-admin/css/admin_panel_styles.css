@@ -1,0 +1,127 @@
+/*This is only for test purposes*/
+.container-cdt-table th{
+  padding-left: 0px !important;
+}
+.condition-icon{
+  padding-right: 3px;
+}
+.glyphicon-remove{
+      /*margin-right: 19%;*/
+}
+td > span.displaySpan{
+  font-size: 19px;
+}
+
+
+/*Style the title for bar and email template page*/
+/* Test classes end here */
+#page-nav{
+  background-color: rgb(30, 136, 229) !important;
+}
+  .trigger-table {
+    margin-top: 5%;
+  }
+  .trigger-table .glyphicon {
+    font-size: 20px;
+  }
+  .table-conditions{
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .table-conditions td{
+    padding: 5px 3px 5px 0px;
+  } 
+
+  .table-conditions:nth-of-type(odd) {
+      background:#EEEEEE;
+    }
+  .table-remove {
+    color: #700;
+    cursor: pointer;
+  }
+  .table-remove:hover {
+    color: #f00;
+  }
+  .table-add {
+    color: #070;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 0;
+  }
+
+  .table-add:hover {
+    color: #0b0;
+  }
+
+  .condition-add{
+    color: blue;
+    cursor: pointer;
+
+  }
+  .condition-minus{
+    color: blue;
+    cursor: pointer;
+  }
+  .hide{
+    display: none;
+  }
+
+
+
+  /* Tooltip section */
+  .tooltip {
+      z-index: 1030;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+  }
+  .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: black;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 0 5px;
+      position: absolute;
+      left: -120px;
+      bottom: 23px;
+      z-index: 10;
+      font-size: 14px;
+  }
+
+  .tooltip:hover .tooltiptext {
+      visibility: visible;
+  }
+
+  .test{
+    background-color: black;
+  }
+  .trigger_id_input{
+      border: none;
+      background-color: white;
+      width: 20px;
+  }
+  .saveTriggerRow{
+    background-color: #4CAF50 !important; 
+  }
+  .saveAllbtn{
+    float: right;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  .EditTrigger{
+    background-color: #e7e7e7; 
+    color: black;
+  }
+
+
+/* Error Checking Highlight Styles */
+.conditio-value-invalid-tr{
+    border: 3px solid red;
+}
+.conditio-value-invalid-input-text{
+    border: 2px solid red;
+}

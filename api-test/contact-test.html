@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Gmail API demo</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gmail API demo</h1>
+
+      <a target='_blank' class="btn btn-primary pull-right" id="compose-button"><img src='https://s7.postimg.cc/xkm6bre0r/Gmail.png' border='0' alt='Gmail' class="share-icon"/></a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+
+    // Safari 3.0+ "[object HTMLElementConstructor]" 
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+
+    $("#compose-button").click(function(){
+    	if (isIE || isSafari) {
+    		// $("#compose-button").attr('href','https://mail.google.com/mail/u/0/?view=cm&fs=1&to=someone@example.com&su=Join me on NurseAchieve!&body= Here is the link... ');
+	    	handleAuthClick();
+	    	var href = "https://mail.google.com/mail/u/0/?view=cm&fs=1&to=someone@example.com&su=Join me on NurseAchieve!&body= Here is the link..."; 
+	        window.open(href); 
+    	}else{
+    		checkAuth();
+    	}
+    });
+      var clientId = '406244306827-v9aa9et94fqjqkm0208lpn73h390h6cg.apps.googleusercontent.com';
+      var apiKey = 'AIzaSyBgda28xBHbjsTJyVoPXoU5PiJ9YqxeXtc';
+      var scopes = 'https://mail.google.com/';
+      function checkAuth() {
+        gapi.auth.authorize({
+          client_id: clientId,
+          scope: scopes,
+          immediate: true
+        }, handleAuthResult);
+      }
+      function handleAuthClick() {
+        gapi.auth.authorize({
+          client_id: clientId,
+          scope: scopes,
+          immediate: false
+        }, handleAuthResult);
+        return false;
+      }
+      function handleAuthResult(authResult) {
+        if(authResult && !authResult.error && !isIE && !isSafari) {
+          var href = "https://mail.google.com/mail/u/0/?view=cm&fs=1&to=someone@example.com&su=Join me on NurseAchieve!&body= Here is the link..."; 
+          window.open(href); 
+          return false;       
+        } else {
+        	if (isIE || isSafari) {
+        		return false;
+        	}
+        	handleAuthClick();
+        }
+      }
+    </script>
+    <script src="https://apis.google.com/js/client.js"></script>
+  </body>
+</html>

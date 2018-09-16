@@ -1,0 +1,70 @@
+// This file contains all the js code dealing with Bar and Email template pages
+$('document').ready(function(){
+	// The "change" event is fired whenever a change is made in the editor.
+	// editor.on( 'change', function( evt ) {
+	//     // getData() returns CKEditor's HTML content.
+	//     evt.editor.getData()
+	// });
+
+    $("#previewTemplate").click(function(){
+        var previewContent = $("#editor").val();
+        var newLocation = "http://" + location.hostname + "/qbank/customized-admin-panel/Plugin-admin/pages/templates/bar_template/template_preview_view.php";
+        $.ajax({
+            
+              type     : "POST",
+              url      : "template_preview.php", 
+              data     : {templateContent:previewContent},
+              success: function(data){
+                window.open(newLocation);
+              }
+        });
+    });
+    
+	$("#newTemplate").submit(function(event) {
+        // Stop the form from submitting normally
+        event.preventDefault();
+
+        // Get the template name
+        var templateName = $(this).find("input[name='newTemplate']").val();
+        
+        // Send an AJAX post request to create the template
+        $.post('template_new.php', {template: templateName}, function(data) {
+            var newLocation = "http://" + location.hostname + location.pathname + "?templates&name=" + templateName;
+            location.href = newLocation;
+        });
+    }); 
+
+    $("#deleteTemplate").click(function() {
+        // Get the template name
+        var templateName = $("#originalName").html();	
+        // Send an AJAX post request to delete the template
+        $.post('template_delete.php', {template: templateName}, function(data) {
+            var newLocation = "http://" + location.hostname + location.pathname + "?templates";
+            location.href = newLocation;
+        });
+    });
+
+
+    $("#saveTemplate").click(function() {
+        // Get the template name and content
+        // var templateContent = editor.getData();
+        var templateContent = $("#editor").val();
+        var templateTitle = $("#templateTitle").val();
+        var originalName = $("#originalName").html();
+        var templateName = $("#currentTemplate").val();
+        var templateBtnContent = $("#templateBtnContent").val();
+        var templateMdlHeader = $("#templateMdlHeader").val();
+        var templateMdlDesc = $("#templateMdlDesc").val();
+        var templatePromoLink = $("#templatePromoLink").val();
+
+        var tmp = $('#editor').find('html');
+         
+        // Send an AJAX post request to save the template
+        $.post('template_save.php', {template: originalName, title:templateTitle, btnContent:templateBtnContent, mdlHeader:templateMdlHeader, mdlDesc:templateMdlDesc, promoLink:templatePromoLink, content: templateContent, newName: templateName}, function(data) {
+            console.log(data);
+            var newLocation = "http://" + location.hostname + location.pathname + "?templates&name=" + templateName;
+            location.href = newLocation;    
+        });
+    });
+
+})

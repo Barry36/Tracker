@@ -1,0 +1,110 @@
+#page-nav{
+  background-color: rgb(30, 136, 229) !important;
+}
+.bar-editor{
+  width: 90%;
+  margin: auto;
+}
+
+#cke_editor>div.cke_inner>div.cke_contents{
+  min-height: 500px;
+}
+
+.customized-fluid-container{
+  padding: 20px 30px 15px;
+  flex: 0.935;
+}
+
+.bar-property-block-input-field{
+  height: 49px;
+  font-size: 16px !important; 
+  padding: 5px 16px !important;
+}
+
+a.selected-template{
+	background-color:#e0e0e0;
+}
+
+a.template-list{
+	color:#337ab7 !important;
+}
+a.template-list:hover{
+	color: rgb(255,64,129) !important;
+}
+
+
+/*Bar Properties Styles*/
+.bar-name-container{
+    padding-bottom: 25px;
+    padding-top: 13px;
+}
+.bar-name-desc-content{
+    font-size: 20px !important;
+}
+.bar-property-block{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.bar-property-desc{
+    flex: 0.25;
+}
+p.bar-property-desc-content{
+  margin-top: 9px;
+  margin-bottom: 0px;
+  font-size: 17px;
+  width: auto;
+}
+
+.bar-property-spacing_1{
+    flex: 0.01;
+}
+
+.bar-property-block-content{
+    flex: 1;
+}
+.bar-property-block-flex{
+    display: flex;
+    flex-direction: row;
+}
+.bar-property-dropdowns-select{
+    font-size: 16px;
+    padding: 5px 16px;
+    height: 37px;
+    width: 100%;
+    height: 40px !important;
+}
+#dropdown_mdl_btn{
+    flex: 1;
+    text-align: right;
+}
+
+.fill_field_reminder{
+    font-size: 12px;
+    margin-bottom: 0px;
+    color: red;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}

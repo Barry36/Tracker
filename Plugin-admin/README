@@ -1,0 +1,12 @@
+1. In this project, the author used Google API and intalled apiclient 2.0 on localhost. The author doesn't entirely sure if the production has this package installed, please come to Hooman or John to confirm.
+
+
+- In the qbank, related files are credentials.json and vendor folder
+
+- You can get install the client using the references and instructions from the link below:
+
+- https://github.com/google/google-api-php-client
+
+2. Since the author is working on localhost therefore there are a0 couple of parameters and variables need to be modified.
+ 	i. in the Bar code (front end html,css and js code, you can view the source code by clicking view "view 		source code" to access the Bar source code), variable twRReUrl need to be changed from localhost to 		     production before lauch the app.
+	ii. 
